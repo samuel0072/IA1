@@ -16,16 +16,16 @@ Um estado é dado por:</br>
 
 A raiz é um estado com 3 missionarios, 3 canibais, profundidade 0, sem pai, sem filhos</br>
 
-algoritmo da bfs:</br>
- &#9colocar a raiz na fila.</br>
- &#9repetir para sempre:</br>
-  &#9fronteira <-  próximo estado a ser desenfileirado</br>
-  &#9se fronteira é solução:</br>
-    &#9&#9retorna fronteira</br>
-  &#9gerar_filhos(fronteira)</br>
-  &#9para cada filho de fronteira:</br>
-    &#9&#9se filho for estado valido:</br>
-      &#9&#9&#9enfileirar(filho)</br>
+-algoritmo da bfs:</br>
+ -colocar a raiz na fila.</br>
+ -repetir para sempre:</br>
+  -fronteira <-  próximo estado a ser desenfileirado</br>
+  -se fronteira é solução:</br>
+    -retorna fronteira</br>
+  -gerar_filhos(fronteira)</br>
+  -para cada filho de fronteira:</br>
+    -se filho for estado valido:</br>
+      -enfileirar(filho)</br>
       
       
 Para gerar os filhos de um estado é gerado as seguintes combinações baseado em quantos missionarios e canibais o estado possui:</br>
