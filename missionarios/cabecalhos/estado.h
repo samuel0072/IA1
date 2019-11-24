@@ -12,6 +12,9 @@ estado* est_pai(estado* est);
 
 estado** gerar_filhos(estado* est);
 
+void adc_filhos(estado* est, estado** filhos);
+
+
 int validar_estado(estado* est);
 
 int solucao(estado* est);

@@ -1,5 +1,6 @@
 #include "cabecalhos/estado.h"
 #include "cabecalhos/fila.h"
+#include<stdio.h>
 
 
 estado* bfs(estado* raiz) {
@@ -14,12 +15,12 @@ estado* bfs(estado* raiz) {
 		}
 		//gera filhos a partir da fronteira
 		estado** filhos = gerar_filhos(fronteira);
-		fronteira->filhos = filhos;
+		adc_filhos(fronteira, filhos);
 
 
 		for(int i = 0; i < MOVIMENTOS; i++) {
 			if(validar_estado(filhos[i])) {//se o filho for valido
-				enfileirar(filhos[i]);
+				enfileirar(fila_, filhos[i]);
 			}
 		}
 	}

@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include "implementacoes/estado.h"
-#include "implementacoes/fila.h"
+#include "../cabecalhos/estado.h"
+#include "../cabecalhos/fila.h"
 
 
 
@@ -11,7 +11,7 @@ struct fila{
 
 fila* criar_fila()
 {
-	fila* nova_fila = (fila*)malloc(sizeof(fila*));
+	fila* nova_fila = (fila*)malloc(sizeof(fila));
 
 	nova_fila->inicio = NULL;
 	nova_fila->fim = NULL;
