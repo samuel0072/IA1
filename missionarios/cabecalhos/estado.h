@@ -1,8 +1,8 @@
-#define movimentos 10
+#define MOVIMENTOS 10
 typedef struct estado estado;
 
 
-estado* criar_estado(int missionarios, int canibais);
+estado* criar_estado(int missionarios, int canibais, int prof, estado* pai);
 
 void adc_prox(estado* est, estado* prox);
 
@@ -15,3 +15,7 @@ estado** gerar_filhos(estado* est);
 int validar_estado(estado* est);
 
 int solucao(estado* est);
+
+int est_miss(estado* est);
+
+int est_can(estado* est);

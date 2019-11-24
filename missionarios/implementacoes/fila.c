@@ -32,7 +32,7 @@ void enfileirar(fila* q, estado* est)
 	{
 		adc_prox(est, NULL);
 		adc_prox(q->fim, est);
-		q->fim = novo_estado;
+		q->fim = est;
 	}
 }
 

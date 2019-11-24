@@ -38,7 +38,7 @@ estado* est_pai(estado* est) {
 }
 
 estado** gerar_filhos(estado* est) {
-	estado** filhos = (estado**)malloc(movimentos*sizeof(estado*));
+	estado** filhos = (estado**)malloc(MOVIMENTOS*sizeof(estado*));
 
 	filhos[0] = criar_estado(est->missionario, est->canibais - 1, est->prof + 1, est);//levar um canibal
 	filhos[1] = criar_estado(est->missionario - 1, est->canibais, est->prof + 1, est);//levar um missionario
@@ -78,4 +78,12 @@ int validar_estado(estado* est) {
 
 int solucao(estado* est) {
  	return (est->canibais == 0) && (est->missionarios == 0);
+ }
+
+ int est_miss(estado* est) {
+ 	return est->missionarios;
+ }
+
+ int est_can(estado* est) {
+ 	return est->canibais;
  }
