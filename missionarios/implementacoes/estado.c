@@ -5,18 +5,20 @@
 struct estado{
 	int missionarios;
 	int canibais;
+	int prof;
 	estado** filhos;
 	estado* prox;//pra manter a fila
 };
 
 
-estado* criar_estado(int missionarios, int canibais) {
+estado* criar_estado(int missionarios, int canibais, int prof) {
 	estado* novo_estado = (estado*)malloc(sizeof(estado*));
 
 	novo_estado->filhos = NULL;
 	novo_estado->prox = NULL;
 	novo_estado->missionarios = missionarios;
 	novo_estado->canibais = canibais;
+	novo_estado->prof = prof;
 
 	return novo_estado;
 }

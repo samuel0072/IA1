@@ -40,9 +40,9 @@ estado* desenfilierar(fila* q)
 {
 	estado* alvo = q->inicio;
 
-	q->inicio = q->inicio->prox;
+	q->inicio = prox_est(q->inicio);
 
-	alvo->prox = NULL;
+	adc_prox(alvo, NULL);
 
 	return alvo;
 }
