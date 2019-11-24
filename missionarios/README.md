@@ -16,7 +16,7 @@ Um estado é dado por:</br>
 
 A raiz é um estado com 3 missionarios, 3 canibais, profundidade 0, sem pai, sem filhos</br>
 
-- algoritmo da bfs:</br>
+ algoritmo da bfs:</br>
  - colocar a raiz na fila.</br>
  - repetir para sempre:</br>
   - fronteira <-  próximo estado a ser desenfileirado</br>
