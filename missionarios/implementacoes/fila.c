@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include "/implementacoes/estado.h"
-#include "/implementacoes/fila.h"
+#include "implementacoes/estado.h"
+#include "implementacoes/fila.h"
 
 
 
