@@ -49,14 +49,14 @@ estado** gerar_filhos(estado* est) {
 
 }
  int validar_estado(estado* est) {
- 	int valido = 1;//1 se eh valirdo 0 caso contrario
+ 	int valido = 1;//1 se eh valido 0 caso contrario
  	int can_dir = 3 - est->canibais;//canibais do lado direito
  	int mis_dir = 3 - est->missionarios;//missionarios do lado direito
 
- 	if((est->missionarios > 3) || (est->missionarios < 0)) {
+ 	if((est->missionarios > 3) || (est->missionarios < 0)) {//overflow e underflow
  		valido = 0;
  	}
- 	else if((est->canibais > 3) || (est->canibais < 0)) {
+ 	else if((est->canibais > 3) || (est->canibais < 0)) {//overflow e underflow
  		valido = 0;
  	}
  	else if(est->canibais > est->missionarios) {//mais canibais q missionarios no lado esquerdo
@@ -69,9 +69,6 @@ estado** gerar_filhos(estado* est) {
 
  }
 
-//levar um canibal 
-//levar um missionario 
-//levar dois canibais
-//levar dois missionarios
-//levar um canibal e um missionario
-//mesma logica pra trazer
+ int solucao(estado* est) {
+ 	return (est->canibais == 0) && (est->missionarios == 0);
+ }
