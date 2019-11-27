@@ -6,13 +6,15 @@ struct estado{
 	int missionarios;
 	int canibais;
 	int prof;
+	int lado;
+	int op;
 	estado** filhos;
 	estado* prox;//pra manter a fila
 	estado* pai;
 };
 
 
-estado* criar_estado(int missionarios, int canibais, int prof, estado* pai) {
+estado* criar_estado(int missionarios, int canibais, int prof, int lado,int op, estado* pai) {
 	estado* novo_estado = (estado*)malloc(sizeof(estado));
 
 	novo_estado->filhos = NULL;
@@ -20,6 +22,8 @@ estado* criar_estado(int missionarios, int canibais, int prof, estado* pai) {
 	novo_estado->missionarios = missionarios;
 	novo_estado->canibais = canibais;
 	novo_estado->prof = prof;
+	novo_estado->op = op;
+	novo_estado->lado = lado;
 	novo_estado->pai = pai;
 
 	return novo_estado;
@@ -39,18 +43,20 @@ estado* est_pai(estado* est) {
 
 estado** gerar_filhos(estado* est) {
 	estado** filhos = (estado**)malloc(MOVIMENTOS*sizeof(estado*));
-
-	filhos[0] = criar_estado(est->missionarios, est->canibais - 1, est->prof + 1, est);//levar um canibal
-	filhos[1] = criar_estado(est->missionarios - 1, est->canibais, est->prof + 1, est);//levar um missionario
-	filhos[2] = criar_estado(est->missionarios, est->canibais - 2, est->prof + 1, est);//levar dois canibais
-	filhos[3] = criar_estado(est->missionarios - 2, est->canibais, est->prof + 1, est);//levar dois missionarios
-	filhos[4] = criar_estado(est->missionarios - 1, est->canibais - 1, est->prof + 1, est);//levar um canibal e um missionario
-	filhos[5] = criar_estado(est->missionarios, est->canibais +  1, est->prof + 1, est);//trazer um canibal
-	filhos[6] = criar_estado(est->missionarios + 1, est->canibais, est->prof + 1, est);//trazer um missionario
-	filhos[7] = criar_estado(est->missionarios, est->canibais + 2, est->prof + 1, est);//trazer dois canibais
-	filhos[8] = criar_estado(est->missionarios + 2, est->canibais, est->prof + 1, est);//trazer dois missionarios
-	filhos[9] = criar_estado(est->missionarios + 1, est->canibais + 1, est->prof + 1, est);//trazer um de cada
-
+	if(est->lado == ESQUERDA) {
+		filhos[0] = criar_estado(est->missionarios, est->canibais - 1, est->prof + 1, DIREITA, LEVAR, est);//levar um canibal
+		filhos[1] = criar_estado(est->missionarios - 1, est->canibais, est->prof + 1, DIREITA, LEVAR, est);//levar um missionario
+		filhos[2] = criar_estado(est->missionarios, est->canibais - 2, est->prof + 1, DIREITA, LEVAR, est);//levar dois canibais
+		filhos[3] = criar_estado(est->missionarios - 2, est->canibais, est->prof + 1, DIREITA, LEVAR, est);//levar dois missionarios
+		filhos[4] = criar_estado(est->missionarios - 1, est->canibais - 1, est->prof + 1, DIREITA, LEVAR, est);//levar um canibal e um missionario
+	}
+	else {
+		filhos[0] = criar_estado(est->missionarios, est->canibais +  1, est->prof + 1, ESQUERDA, TRAZER, est);//trazer um canibal
+		filhos[1] = criar_estado(est->missionarios + 1, est->canibais, est->prof + 1, ESQUERDA, TRAZER, est);//trazer um missionario
+		filhos[2] = criar_estado(est->missionarios, est->canibais + 2, est->prof + 1, ESQUERDA, TRAZER, est);//trazer dois canibais
+		filhos[3] = criar_estado(est->missionarios + 2, est->canibais, est->prof + 1, ESQUERDA, TRAZER, est);//trazer dois missionarios
+		filhos[4] = criar_estado(est->missionarios + 1, est->canibais + 1, est->prof + 1, ESQUERDA, TRAZER, est);//trazer um de cada
+	}
 	return filhos;
 
 }
@@ -70,10 +76,10 @@ int validar_estado(estado* est) {
  	else if((est->canibais > 3) || (est->canibais < 0)) {//overflow e underflow
  		valido = 0;
  	}
- 	else if(est->canibais > est->missionarios) {//mais canibais q missionarios no lado esquerdo
+ 	else if(est->canibais > est->missionarios && (est->missionarios > 0)) {//mais canibais q missionarios no lado esquerdo
  		valido = 0;
  	}
- 	else if(can_dir > mis_dir) {//mais canibais q missionarios no lado esquerdo
+ 	else if(can_dir > mis_dir && (mis_dir > 0)) {//mais canibais q missionarios no lado esquerdo
  		valido = 0;
  	}
  	return valido;
@@ -92,3 +98,6 @@ int solucao(estado* est) {
  	return est->canibais;
  }
 
+int acao(estado* est) {
+	return est->op;
+}
