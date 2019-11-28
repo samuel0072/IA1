@@ -1,4 +1,5 @@
 #include "../cabecalhos/estados.h"
+#include "../cabecalhos/no.h"
 #include <stdlib.h>
 
 struct estado {
