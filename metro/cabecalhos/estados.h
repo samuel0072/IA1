@@ -17,3 +17,4 @@ typedef struct estado estado;
 
 #define VELOCIDADE 30
 #define T_TROCA_H 0.6667
+#define ESTACOES 14
