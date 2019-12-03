@@ -4,18 +4,16 @@
 
 struct estado {
 	int estacao;
-	int custo_g;
-	int custo_h;
+	int custo;
 	int quant_filhos;
 	estado* pai;
 	estado** filhos;
 };
 
-estado* criar_estado(int estacao,int custo_g, int custo_h, estado* pai) {
+estado* criar_estado(int estacao,int custo, estado* pai) {
 	estado* novo_estado = (estado*)malloc(sizeof(estado));
 	novo_estado->estacao = estacao;
-	novo_estado->custo_g = custo_g;
-	novo_estado->custo_h = custo_h;
+	novo_estado->custo = custo;
 	novo_estado->pai = pai;
 	novo_estado->filhos = NULL;
 	novo_estado->quant_filhos = 0;
@@ -23,22 +21,34 @@ estado* criar_estado(int estacao,int custo_g, int custo_h, estado* pai) {
 }
 
 /*recebe uma matriz de distancias e uma matriz de ponteiros pra estacoes*/
-estado* gerar_filhos(no*** estacoes, int** distancias, estado* est) {
-
-	int quant;
-	int i, j;
-	estado** filhos;//array de ponteiros pra estado
+estado** gerar_filhos(no*** estacoes, int** distancias, int destino, estado* est) {
+	int estacao = est->estacao;
+	int quant, i, j;
+	estado** filhos;
 
 	for(i = 0, quant = 0; i < ESTACOES; i++) {
-		if(estacoes[i] != NULL) {
+		if(estacoes[estacao][i] != NULL) {
 			quant++;
 		}
 	}
 
+	est->quant_filhos = quant;
 	filhos = (estado**)malloc(quant*sizeof(estado*));
 
 	for(i = 0, j = 0; i < ESTACOES; i++) {
-		if(estacoes[i] != NULL) {
-			filhos[j] = criar_estado(i, )
+		if(estacoes[estacao][i] != NULL) {
+			estado* pai = est->pai;
+			int cor_atual = estacoes[pai->estacao][est->estacao]->cor;
+			int custo = 0;
+
+			if(estacoes[estacao][i]->cor != cor_atual) {
+				custo+= T_TROCA_H;
+			}
+			filhos[j] = criar_estado(
+						i,
+						est->custo + (distancias[estacao][destino]+ estacoes[estacao][i]->dist),
+						est);
+			j++;
 		}
+	}
 }
