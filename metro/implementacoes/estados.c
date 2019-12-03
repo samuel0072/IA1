@@ -39,16 +39,15 @@ estado** gerar_filhos(no*** estacoes, int** distancias, int destino, estado* est
 		if(estacoes[estacao][i] != NULL) {
 			estado* pai = est->pai;
 			int cor_atual = estacoes[pai->estacao][est->estacao]->cor;
-			int custo = 0;
+			int custo = est->custo + (distancias[estacao][destino]+ estacoes[estacao][i]->dist);
 
 			if(estacoes[estacao][i]->cor != cor_atual) {
 				custo+= T_TROCA_H;
 			}
-			filhos[j] = criar_estado(
-						i,
-						est->custo + (distancias[estacao][destino]+ estacoes[estacao][i]->dist),
-						est);
+			filhos[j] = criar_estado(i, custo, est);
 			j++;
 		}
 	}
+
+	return filhos;
 }
