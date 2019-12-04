@@ -4,7 +4,7 @@ typedef struct heap heap;
 
 heap* criar_heap();
 
-void enqueue(heap *heap, int item);
+void enqueue(heap *heap, estado* est);
 
 estado* dequeue(heap *heap);
 
@@ -17,3 +17,5 @@ int get_right_index(heap *heap, int i);
 void max_heapify(heap *heap, int i);
 
 estado* item_of(heap *heap, int i);
+
+void min_heapify(heap *heap, int i);
