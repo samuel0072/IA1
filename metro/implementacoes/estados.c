@@ -51,3 +51,7 @@ estado** gerar_filhos(no*** estacoes, int** distancias, int destino, estado* est
 
 	return filhos;
 }
+
+int solucao(estado* est, int destino) {
+	return est->estacao == destino;
+} 
