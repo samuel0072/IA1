@@ -18,3 +18,7 @@ typedef struct estado estado;
 #define VELOCIDADE 30
 #define T_TROCA_H 0.6667
 #define ESTACOES 14
+
+estado* criar_estado(int estacao,int custo, estado* pai);
+
+estado** gerar_filhos(no*** estacoes, int** distancias, int destino, estado* est);
