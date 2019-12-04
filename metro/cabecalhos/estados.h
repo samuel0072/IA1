@@ -22,3 +22,5 @@ typedef struct estado estado;
 estado* criar_estado(int estacao,int custo, estado* pai);
 
 estado** gerar_filhos(no*** estacoes, int** distancias, int destino, estado* est);
+
+int custo_est(estado* est);

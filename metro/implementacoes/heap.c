@@ -47,7 +47,7 @@ void enqueue(heap *heap, estado* est) {
 		int key_index = heap->size;
 		int parent_index = get_parent_index(heap, heap->size);
 		while (parent_index >= 1 &&
-			heap->data[key_index]->custo < heap->data[parent_index]->custo) {
+			custo_est(heap->data[key_index]) < custo_est(heap->data[parent_index])) {
 
 			estado* aux = heap->data[key_index];
 			heap->data[key_index] = heap->data[parent_index];
@@ -81,7 +81,7 @@ void min_heapify(heap *heap, int i)
 	int right_index = get_right_index(heap, i);
 
 	if (left_index <= heap->size &&
-		heap->data[left_index]->custo < heap->data[i]) {
+		custo_est(heap->data[left_index]) < custo_est(heap->data[i])) {
 		largest = left_index;
 	} 
 	else {
@@ -89,7 +89,7 @@ void min_heapify(heap *heap, int i)
 	}
 
 	if (right_index <= heap->size &&
-		heap->data[right_index]->custo < heap->data[largest]->custo) {
+		custo_est(heap->data[right_index]) < custo_est(heap->data[largest])) {
 		largest = right_index;
 	}
 
